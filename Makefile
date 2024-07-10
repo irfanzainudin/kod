@@ -1,3 +1,6 @@
+all:
+	make main building_prerequisites
+
 main:
 	gcc kod.c -o kod
 
