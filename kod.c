@@ -3,6 +3,8 @@
 #include <stddef.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <string.h>
+#include <stdbool.h>
 
 void start_kod() {
     printf("Starting kod...\n");
@@ -16,17 +18,34 @@ int main(int argc, char* argv[]) {
 
     start_kod();
     
-    FILE *fptr; // fptr = File pointer
-    int bufferLength = 255;
-    char buffer[bufferLength]; /* not ISO 90 compatible */
+    int input_length = 255;
+    char input[input_length]; /* not ISO 90 compatible */
     
-    fptr = fopen(argv[1], "r");
+    printf("kod> ");
+    while (fgets(input, input_length, stdin)) {
+        if (strncmp(input, "q", 1) == 0) {
+            printf("\n");
+            break;
+        } else if (strncmp(input, "show", 4) == 0) {
+            FILE *fptr; // fptr = File pointer
+            int bufferLength = 255;
+            char buffer[bufferLength]; /* not ISO 90 compatible */
+            
+            fptr = fopen(argv[1], "r");
+            
+            // Taken from: https://stackoverflow.com/a/39237609/9311041
+            while(fgets(buffer, bufferLength, fptr)) {
+                printf("%s", buffer);
+            }
+
+            printf("\n");
     
-    // Taken from: https://stackoverflow.com/a/39237609/9311041
-    while(fgets(buffer, bufferLength, fptr)) {
-        printf("%s", buffer);
+            // Clean up before returning
+            fclose(fptr);
+        }
+        
+        printf("kod> ");
     }
-    fclose(fptr);
     
     return 0;
 }

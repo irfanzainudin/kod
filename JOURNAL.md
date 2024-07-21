@@ -68,4 +68,26 @@ int main(int argc, char* argv[]) {
 }
 ```
 
-3. 
+3. I know that string functions are not safe unless it reads n characters. So I want to use `strcmp()` which has the safer variant `strncmp()`. Interestingly, I had the following code and I didn't know what to expect, but apparently it didn't execute the code block inside the `if` statement.
+
+```c
+#include <stdio.h>
+...
+
+int main(int argc, char* argv[]) {
+    ...
+    
+    printf("kod> ");
+    while (fgets(input, input_length, stdin)) {
+        if (strncmp(input, "q", 2) == 0) {
+            printf("\n");
+            break;
+        }
+        ...
+    }
+    
+    return 0;
+}
+```
+
+UPDATE: Turns out, it's just because the code determined that the particular condition for the `if` statement is false. `input` was actually `"q\n"` which is two characters and `strncmp()` returned a non-zero value.

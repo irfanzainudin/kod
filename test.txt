@@ -1,1 +1,6 @@
 Hello, world of text editors!
+
+This is my attempt at implementing kod,
+a clone of VSCode in C.
+
+Thank you for following this dev journey.
