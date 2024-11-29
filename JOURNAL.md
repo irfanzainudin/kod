@@ -91,3 +91,5 @@ int main(int argc, char* argv[]) {
 ```
 
 UPDATE: Turns out, it's just because the code determined that the particular condition for the `if` statement is false. `input` was actually `"q\n"` which is two characters and `strncmp()` returned a non-zero value.
+
+4. [29th November 2024 - 8:53am, Kg Kusial Baru] Need to find a way to compare strings (using `strncmp()`) without it matching just a letter. In other words, I want "greedy" matching. Because when I added the Malay commands to quit kod, "henti" (actual command being just "h") is incorrectly matched with "hello". Will investigate more when I have time.
