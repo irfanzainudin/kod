@@ -1,0 +1,6 @@
+Helo, dunia penyunting teks!
+
+Ini ialah percubaan saya membina kod,
+klon kepada VSCode dalam C.
+
+Terima kasih sudi mengikuti kembara membina ini.

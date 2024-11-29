@@ -23,7 +23,26 @@ int main(int argc, char* argv[]) {
     
     printf("kod> ");
     while (fgets(input, input_length, stdin)) {
-        if (strncmp(input, "q", 1) == 0) {
+        if (strncmp(input, "t", 1) == 0) {
+            FILE *fptr; // fptr = File pointer
+            int bufferLength = 255;
+            char buffer[bufferLength]; /* not ISO 90 compatible */
+            
+            fptr = fopen(argv[1], "r");
+            
+            // Taken from: https://stackoverflow.com/a/39237609/9311041
+            while(fgets(buffer, bufferLength, fptr)) {
+                printf("%s", buffer);
+            }
+
+            printf("\n");
+    
+            // Clean up before returning
+            fclose(fptr);
+        } else if (strncmp(input, "h", 1) == 0) {
+            printf("\n");
+            break;
+        } else if (strncmp(input, "q", 1) == 0) {
             printf("\n");
             break;
         } else if (strncmp(input, "show", 4) == 0) {
@@ -42,6 +61,12 @@ int main(int argc, char* argv[]) {
     
             // Clean up before returning
             fclose(fptr);
+        } else {
+            printf("\n# Arahan Melayu\n");
+            printf("t\t- tunjuk isi dokumen\nh\t- hentikan kod\n");
+            printf("\n# English commands\n");
+            printf("show\t- show file contents\nq\t- quit kod\n");
+            printf("\n");
         }
         
         printf("kod> ");
